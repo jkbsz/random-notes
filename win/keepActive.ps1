@@ -1,4 +1,4 @@
-# Keeps the screen form locking
+# Keeps the screen from locking
 
 $WShell = New-Object -com "Wscript.Shell"
 
