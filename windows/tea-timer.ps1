@@ -2,6 +2,11 @@
 
 $minutes = 5
 
+$prompt = Read-Host "How many minutes [5]"
+if ($prompt -match "^\d+$") {
+	$minutes = $prompt
+}
+
 Write-Host -ForegroundColor Gray "$(Get-Date) $minutes minute timer"
 
 For ($i=1; $i -le $minutes; $i++) {
