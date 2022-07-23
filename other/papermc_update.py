@@ -21,7 +21,7 @@ if response_builds.status_code == 200:
         if build['build'] > max_build and build['channel'] == 'default':
             download_build = build
             max_build = build['build']
-    
+
     if download_build is not None:
         print(download_build)
         with open(PAPER_LINK,"rb") as f:
@@ -44,9 +44,14 @@ if response_builds.status_code == 200:
                     print("Hash error - quit")
                     quit(1)
                 else:
-                    print("Hash OK - updating symlink")
+                    print("Hash OK - replacing jar")
                     if os.path.islink(PAPER_LINK):
+                        old_build = os.path.realpath(PAPER_LINK)
                         os.unlink(PAPER_LINK)
+                        print(f"Removing [{old_build}]")
+                        os.remove(old_build)
+                    print(f"Linking [{PAPER_LINK}] --> [{download_build['downloads']['application']['name']}]")
                     os.symlink(download_build['downloads']['application']['name'], PAPER_LINK)
         else:
             print("Version is up to date")
+
