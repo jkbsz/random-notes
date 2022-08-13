@@ -3,7 +3,7 @@ import requests
 import hashlib
 import os
 
-PAPER_VERSION = 1.19
+PAPER_VERSION = "1.19.2"
 PAPER_LINK = "paper-current.jar"
 
 params = {
